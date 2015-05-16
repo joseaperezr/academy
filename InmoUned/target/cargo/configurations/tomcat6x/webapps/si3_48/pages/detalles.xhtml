@@ -1,0 +1,155 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Características
+			del inmueble</h1>
+		<div class="entry">
+			<h:form>
+				<h:outputLink value="#{request.contextPath}/pages/resultados.jsf">
+					<h:outputText value="Volver a los resultados" />
+				</h:outputLink>
+
+				<p:growl id="growl" sticky="true" showDetail="true" />
+
+				<p:tabView effect="explode" effectDuration="normal">
+
+					<p:tab title="Detalles">
+						<h:panelGrid columns="2" cellpadding="10">
+
+							<h:outputLabel for="tmn" value="Tamaño *: " />
+							<h:outputText value="#{buscadorMB.inmuebleSelected.tamaño}" />
+
+							<h:outputLabel for="precio" value="Precio *: " />
+							<h:outputText value="#{buscadorMB.inmuebleSelected.precio}" />
+
+							<h:outputLabel for="habitaciones" value="Habitaciones *: " />
+							<h:outputText value="#{buscadorMB.inmuebleSelected.habitaciones}" />
+
+							<h:outputLabel for="baños" value="Baños *: " />
+							<h:outputText value="#{buscadorMB.inmuebleSelected.baños}" />
+
+
+							<h:outputLabel for="jardin" value="Jardín : " />
+							<p:selectBooleanButton disabled="true"
+								value="#{buscadorMB.inmuebleSelected.jardin}" onLabel="Si"
+								offLabel="No" />
+
+
+							<h:outputLabel for="parking" value="Parking : " />
+							<p:selectBooleanButton disabled="true"
+								value="#{buscadorMB.inmuebleSelected.parking}" onLabel="Si"
+								offLabel="No" />
+
+							<h:outputLabel for="observaciones" value="Observaciones : " />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.observaciones}" />
+
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Ubicación">
+						<h:panelGrid columns="2" cellpadding="10">
+
+							<h:outputText value="Provincia *:" />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.provincia}" />
+
+							<h:outputText value="Tipo vía *:" />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.tipoVia}" />
+
+							<h:outputText value="Nombre vía *:" />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.nombreVia}" />
+
+							<h:outputText value="Número: " />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.nro}" />
+
+							<h:outputText value="Puerta: " />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.puerta}" />
+
+							<h:outputText value="Piso: " />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.piso}" />
+
+							<h:outputText value="Detalles: " />
+							<h:outputText
+								value="#{buscadorMB.inmuebleSelected.ubicacion.detalle}" />
+
+						</h:panelGrid>
+					</p:tab>
+
+					<p:tab title="Interes">
+						<h:panelGrid columns="4" cellpadding="10">
+
+							<h:outputLabel for="email" value="Email *: " />
+							<p:inputText id="email" value="#{buscadorMB.interesado.email}"
+								required="true">
+								<f:validateLength minimum="5" />
+								<p:ajax event="blur" update="emailMsg" />
+							</p:inputText>
+							<p:message id="emailMsg" for="email" display="icon" />
+							<h:outputText />
+
+							<h:outputLabel for="nombre" value="Nombre *: " />
+							<p:inputText id="nombre" value="#{buscadorMB.interesado.nombre}"
+								required="true">
+								<f:validateLength minimum="3" />
+								<p:ajax event="blur" update="nameMsg" />
+							</p:inputText>
+							<p:message id="nameMsg" for="nombre" display="icon" />
+							<h:outputText />
+
+							<h:outputLabel for="apellido1" value="Apellidos: " />
+							<p:inputText id="apellido1"
+								value="#{buscadorMB.interesado.apellido1}" required="true">
+								<f:validateLength minimum="5" />
+								<p:ajax event="blur" update="surnameMsg" />
+							</p:inputText>
+							<p:inputText id="apellido2"
+								value="#{buscadorMB.interesado.apellido2}">
+								<f:validateLength minimum="5" />
+								<p:ajax event="blur" update="surnameMsg" />
+							</p:inputText>
+							<p:message id="surnameMsg" for="apellido1" display="icon" />
+
+							<h:outputLabel for="movil" value="Móvil *: " />
+							<p:inputMask id="movil" value="#{buscadorMB.interesado.movil}"
+								mask="(999) 999999" required="true" />
+							<p:message id="movilMsg" for="movil" display="icon" />
+							<h:outputText />
+
+							<p:commandButton value="Estoy interesado"
+								action="#{buscadorMB.interes}" ajax="false" />
+
+						</h:panelGrid>
+					</p:tab>
+
+				</p:tabView>
+
+				<p:tab id="foto" title="Fotos">
+
+					<p:panel header="Fotos">
+
+
+						<p:galleria value="#{buscadorMB.fotos}" var="image" effect="fade"
+							effectSpeed="1000" panelWidth="600" panelHeight="250"
+							frameWidth="150" frameHeight="70" filmstripPosition="top">
+							<p:graphicImage value="#{buscadorMB.file}">
+								<f:param name="item_id" value="#{image.id}" />
+							</p:graphicImage>
+						</p:galleria>
+					</p:panel>
+				</p:tab>
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

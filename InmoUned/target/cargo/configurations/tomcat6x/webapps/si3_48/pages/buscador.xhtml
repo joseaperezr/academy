@@ -1,0 +1,203 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Buscador de
+			inmuebles</h1>
+		<div class="entry">
+			<p>Completa las caracteristicas de la propiedad que desea buscar</p>
+
+			<h:form>
+
+				<p:growl id="growl" sticky="true" showDetail="true" />
+
+				<p:tab id="personal" title="Características">
+
+					<p:panel header="Detalles">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="4" columnClasses="label, value"
+							styleClass="grid">
+							
+							<h:outputText value="Provincia *:" />
+							<p:selectOneMenu required="true" id="provincia" label="Provincia"
+								value="#{buscadorMB.buscadorHelper.provincia}">
+								<f:selectItem itemLabel="Seleccionar provincia..." itemValue="" />
+								<f:selectItem itemLabel="A Coruña" itemValue="A Coruña" />
+								<f:selectItem itemLabel="Barcelona" itemValue="Barcelona" />
+								<f:selectItem itemLabel="Las Palmas" itemValue="Las Palmas" />
+								<f:selectItem itemLabel="Madrid" itemValue="Madrid" />
+								<f:selectItem itemLabel="Tenerife" itemValue="Tenerife" />
+							</p:selectOneMenu>
+							<h:outputText />
+							<h:outputText />
+							
+
+
+							<h:outputLabel for="tamaño" value="Tamaño : " />
+							<p:selectOneMenu id="tamaño" required="false" label="Tamaño"
+								value="#{buscadorMB.buscadorHelper.tamaño}">
+								<f:selectItem itemLabel="Seleccionar tamaño de la vivienda"
+									itemValue="" />
+								<f:selectItem itemLabel="40 m²" itemValue="40" />
+								<f:selectItem itemLabel="60 m²" itemValue="60" />
+								<f:selectItem itemLabel="80 m²" itemValue="80" />
+								<f:selectItem itemLabel="100 m²" itemValue="100" />
+								<f:selectItem itemLabel="120 m²" itemValue="120" />
+								<f:selectItem itemLabel="140 m²" itemValue="140" />
+								<f:selectItem itemLabel="160 m²" itemValue="160" />
+								<f:selectItem itemLabel="180 m²" itemValue="180" />
+								<f:selectItem itemLabel="200 m²" itemValue="200" />
+								<f:selectItem itemLabel="400 m²" itemValue="400" />
+								<f:selectItem itemLabel="600 m²" itemValue="600" />
+							</p:selectOneMenu>
+							<h:outputText />
+							<h:outputText />
+
+
+							<h:outputLabel for="precio" value="Precio mínimo*: " />
+							<p:selectOneMenu required="true" label="Precio min."
+								value="#{buscadorMB.buscadorHelper.precioMin}">
+								<f:selectItem itemLabel="Seleccionar precio mínimo" itemValue="" />
+								<f:selectItem itemLabel="0" itemValue="0" />
+								<f:selectItem itemLabel="200 €" itemValue="200" />
+								<f:selectItem itemLabel="500 €" itemValue="500" />
+								<f:selectItem itemLabel="750 €" itemValue="750" />
+								<f:selectItem itemLabel="1.000 €" itemValue="1000" />
+								<f:selectItem itemLabel="2.000 €" itemValue="2000" />
+								<f:selectItem itemLabel="5.000 €" itemValue="5000" />
+								<f:selectItem itemLabel="10.000 €" itemValue="10000" />
+								<f:selectItem itemLabel="50.000 €" itemValue="50000" />
+								<f:selectItem itemLabel="100.000 €" itemValue="100000" />
+								<f:selectItem itemLabel="150.000 €" itemValue="150000" />
+								<f:selectItem itemLabel="200.000 €" itemValue="200000" />
+								<f:selectItem itemLabel="250.000 €" itemValue="250000" />
+								<f:selectItem itemLabel="350.000 €" itemValue="350000" />
+								<f:selectItem itemLabel="450.000 €" itemValue="400000" />
+								<f:selectItem itemLabel="500.000 €" itemValue="500000" />
+							</p:selectOneMenu>
+							
+
+
+
+							<h:outputLabel for="precio" value="Precio máximo*: " />
+							<p:selectOneMenu required="true" label="Precio max."
+								value="#{buscadorMB.buscadorHelper.precioMax}">
+								<f:selectItem itemLabel="Seleccionar precio máximo" itemValue="" />
+								<f:selectItem itemLabel="200 €" itemValue="200" />
+								<f:selectItem itemLabel="500 €" itemValue="500" />
+								<f:selectItem itemLabel="750 €" itemValue="750" />
+								<f:selectItem itemLabel="1.000 €" itemValue="1000" />
+								<f:selectItem itemLabel="2.000 €" itemValue="2000" />
+								<f:selectItem itemLabel="5.000 €" itemValue="5000" />
+								<f:selectItem itemLabel="10.000 €" itemValue="10000" />
+								<f:selectItem itemLabel="50.000 €" itemValue="50000" />
+								<f:selectItem itemLabel="100.000 €" itemValue="100000" />
+								<f:selectItem itemLabel="150.000 €" itemValue="150000" />
+								<f:selectItem itemLabel="200.000 €" itemValue="200000" />
+								<f:selectItem itemLabel="250.000 €" itemValue="250000" />
+								<f:selectItem itemLabel="350.000 €" itemValue="350000" />
+								<f:selectItem itemLabel="450.000 €" itemValue="400000" />
+								<f:selectItem itemLabel="500.000 €" itemValue="500000" />
+								<f:selectItem itemLabel="600.000 €" itemValue="600000" />
+								<f:selectItem itemLabel="700.000 €" itemValue="700000" />
+								<f:selectItem itemLabel="800.000 €" itemValue="800000" />
+								<f:selectItem itemLabel="900.000 €" itemValue="900000" />
+								<f:selectItem itemLabel="1.000.000 €" itemValue="1000000" />
+								<f:selectItem itemLabel="2.000.000 €" itemValue="2000000" />
+								<f:selectItem itemLabel="5.000.000 €" itemValue="5000000" />
+								<f:selectItem itemLabel="10.000.000 €" itemValue="10000000" />
+							</p:selectOneMenu>
+							
+
+
+							<h:outputLabel for="habitaciones" value="Habitaciones : " />
+							<p:selectOneMenu required="false"
+								value="#{buscadorMB.buscadorHelper.habitaciones}">
+								<f:selectItem itemLabel="Sin preferencia" itemValue="" />
+								<f:selectItem itemLabel="1" itemValue="1" />
+								<f:selectItem itemLabel="2" itemValue="2" />
+								<f:selectItem itemLabel="3" itemValue="3" />
+								<f:selectItem itemLabel="4" itemValue="4" />
+								<f:selectItem itemLabel="5" itemValue="5" />
+							</p:selectOneMenu>
+							<h:outputText />
+							<h:outputText />
+
+							<h:outputLabel for="baños" value="Baños : " />
+							<p:selectOneMenu required="false"
+								value="#{buscadorMB.buscadorHelper.baños}">
+								<f:selectItem itemLabel="Sin preferencia" itemValue="" />
+								<f:selectItem itemLabel="1" itemValue="=1" />
+								<f:selectItem itemLabel="2" itemValue="=2" />
+								<f:selectItem itemLabel="3" itemValue="=3" />
+								<f:selectItem itemLabel="4" itemValue="=4" />
+								<f:selectItem itemLabel="5 o +" itemValue=">=5" />
+
+							</p:selectOneMenu>
+							<h:outputText />
+							<h:outputText />
+
+
+							<h:outputLabel for="jardin" value="Jardín : " />
+							<p:selectBooleanButton
+								value="#{buscadorMB.buscadorHelper.jardin}" onLabel="Si"
+								offLabel="No" />
+
+
+							<h:outputLabel for="parking" value="Parking : " />
+							<p:selectBooleanButton
+								value="#{buscadorMB.buscadorHelper.parking}" onLabel="Si"
+								offLabel="No" />
+
+
+
+
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="ubicacion" title="Ubicación">
+					<p:panel header="Ubicación">
+
+						<h:panelGrid id="ubi" columns="4">
+
+							<h:outputText value="Tipo vía :" />
+							<p:selectOneMenu required="false"
+								value="#{buscadorMB.buscadorHelper.ubicacion.tipoVia}">
+								<f:selectItem itemLabel="Seleccionar calle..." itemValue="" />
+								<f:selectItem itemLabel="CALLE" itemValue="CALLE" />
+								<f:selectItem itemLabel="AVENIDA" itemValue="AVENIDA" />
+							</p:selectOneMenu>
+
+							<h:outputText value="Nombre vía :" />
+							<h:inputText id="nombrevia" required="false"
+								value="#{buscadorMB.buscadorHelper.ubicacion.nombreVia}" />
+
+
+							<h:outputText />
+							<h:outputText />
+						</h:panelGrid>
+
+					</p:panel>
+				</p:tab>
+
+
+
+				<p:commandButton value="Buscar" action="#{buscadorMB.buscar}"
+					ajax="false" />
+
+
+
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

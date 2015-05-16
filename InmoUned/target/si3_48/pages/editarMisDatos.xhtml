@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+		<h1 class="title ui-widget-header ui-corner-all">Editar datos de usuario</h1>
+		<div class="entry">
+			<p>Complete los datos del usuario.</p>
+			<h:form>
+
+				<p:growl id="growl" sticky="true" showDetail="true" />
+
+
+				<p:tab  rendered="#{sessionMB.logged}" id="personal" title="Personal">
+
+					<p:panel header="Detalles personales">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="4" columnClasses="label, value"
+							styleClass="grid">
+
+
+
+							<p:inputText id="id" type="hidden"
+								value="#{sessionMB.usuarioLogged.id}" />
+							<h:outputText />
+							<h:outputText />
+							<h:outputText />
+
+							<h:outputLabel for="nombre" value="Nombre *: " />
+							<p:inputText id="nombre"
+								value="#{sessionMB.usuarioLogged.nombre}" required="true">
+								<f:validateLength minimum="3" />
+								<p:ajax event="blur" update="nameMsg" />
+							</p:inputText>
+							<p:message id="nameMsg" for="nombre" display="icon" />
+							<h:outputText />
+
+							<h:outputLabel for="apellidos" value="Apellidos: " />
+
+							<p:inputText id="apellido1"
+								value="#{sessionMB.usuarioLogged.apellido1}" required="true">
+								<f:validateLength minimum="5" />
+								<p:ajax event="blur" update="surnameMsg" />
+							</p:inputText>
+
+
+							<p:inputText id="apellido2"
+								value="#{sessionMB.usuarioLogged.apellido2}">
+								<f:validateLength minimum="5" />
+								<p:ajax event="blur" update="surnameMsg" />
+							</p:inputText>
+
+							<p:message id="surnameMsg" for="apellido1" display="icon" />
+
+
+
+
+							<h:outputLabel for="movil" value="Movil *: " />
+							<p:inputMask id="movil"
+								value="#{sessionMB.usuarioLogged.movil}" mask="(999) 999999" />
+							<p:message id="movilMsg" for="movil" display="icon" />
+							<h:outputText />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+
+				<p:tab id="datusu" title="Datos Usuario">
+					<p:panel header="DatosUsuario">
+
+						<h:panelGrid columns="3" columnClasses="label, value"
+							styleClass="grid">
+
+							<h:outputLabel for="email" value="Email *: " />
+							<p:inputText id="email"
+								value="#{sessionMB.usuarioLogged.email}" required="true">
+								<f:validateLength minimum="5" />
+								<p:ajax event="blur" update="emailMsg" />
+							</p:inputText>
+							<p:message id="emailMsg" for="email" display="icon" />
+
+							<!-- 
+							<h:outputLabel for="pwd1" value="Password 1: *" />
+							<p:password id="pwd1" value="#{sessionMB.usuarioLogged.password}"
+								feedback="true" promptLabel="Escribe tu clave"
+								weakLabel="insegura" goodLabel="Buena" strongLabel="Fuerte"
+								match="pwd2" label="Password 1" required="true" />
+							<h:outputText />
+
+							<h:outputLabel for="pwd2" value="Password 2: *" />
+							<p:password id="pwd2" value="#{sessionMB.usuarioLogged.password}"
+								label="Password 2" required="true" feedback="true"
+								promptLabel="Escribe tu clave" weakLabel="insegura"
+								goodLabel="Buena" strongLabel="Fuerte" />
+							<p:messages id="messages" showDetail="true" autoUpdate="true" />
+ -->
+
+
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+
+				<p:commandButton  rendered="#{sessionMB.logged}" id="updUsuario" value="OK" update="growl"
+					action="#{sessionMB.updUsuario}" ajax="false" />
+
+
+
+			</h:form>
+		</div>
+
+	</ui:define>
+</ui:composition>

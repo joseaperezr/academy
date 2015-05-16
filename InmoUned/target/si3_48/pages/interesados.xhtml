@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Interesados</h1>
+		<div class="entry">
+			<p>Completa las caracteristicas de la propiedad que desea buscar</p>
+
+			<h:form id="form">
+				<p:tab id="personal" title="Personal">
+
+					<p:panel header="Usuarrio seleccionado">
+
+
+						<h:panelGrid columns="4" columnClasses="label, value"
+							styleClass="grid">
+
+							<h:outputLabel value="Identificador: " />
+							<h:outputText value="#{inmuebleMB.inmuebleSelected.id}" />
+							<h:outputText />
+							<h:outputText />
+
+							<h:outputLabel value="Precio: " />
+							<h:outputText value="#{inmuebleMB.inmuebleSelected.precio}" />
+							<h:outputText />
+							<h:outputText />
+
+
+							<h:outputLabel value="Tamaño: " />
+							<h:outputText value="#{inmuebleMB.inmuebleSelected.tamaño} m2" />
+
+							<h:outputLabel value="Habitaciones: " />
+							<h:outputText value="#{inmuebleMB.inmuebleSelected.habitaciones}" />
+
+							<h:outputLabel value="Baños: " />
+							<h:outputText value="#{inmuebleMB.inmuebleSelected.baños}" />
+
+							<p:commandButton value="Editar"
+								action="#{inmuebleMB.editarInmueble}" ajax="false" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:spacer height="25" />
+
+				<p:growl id="growl" showDetail="true" />
+
+				<p:dataTable id="results" var="intr" rendered="#{sessionMB.logged}"
+					value="#{inmuebleMB.interesadosDataModel}" paginator="true"
+					rows="10" selection="#{inmuebleMB.interesadoSelected}"
+					selectionMode="single" tableStyle="width:auto">
+
+					<p:ajax event="rowUnselect" listener="#{inmuebleMB.onRowUnselect}"
+						update=":form:growl" />
+					<p:ajax event="rowDblselect"
+						listener="#{inmuebleMB.onRowDblselect}" />
+
+
+					<p:column headerText="Id" style="width:100px">
+						<h:outputText value="#{intr.id}" />
+					</p:column>
+
+					<p:column headerText="email" style="width:100px">
+						<h:outputText value="#{intr.email}" />
+					</p:column>
+
+					<p:column headerText="Nombre" style="width:100px">
+						<h:outputText value="#{intr.nombre}" />
+					</p:column>
+
+					<p:column headerText="Apellidos" style="width:100px">
+						<h:outputText value="#{intr.apellido1} #{intr.apellido2}" />
+					</p:column>
+
+					<p:column headerText="Movil" style="width:100px">
+						<h:outputText value="#{intr.movil}" />
+					</p:column>
+
+
+				</p:dataTable>
+
+		</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

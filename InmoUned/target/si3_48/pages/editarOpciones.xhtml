@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+	
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Control de
+			acceso a opciones del menú</h1>
+		<div class="entry">
+			<p></p>
+			<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" />
+
+				<p:tab rendered="#{sessionMB.admin}" id="Opciones" title="Opciones">
+					<p:panel header="Opciones">
+
+						<h:panelGrid id="control" columns="2">
+
+							<h:outputLabel for="menuMiAreaMisDatos"
+								value="Menú > Mi Área > Mis Datos : " />
+							<p:selectBooleanButton id="menuMiAreaMisDatos"
+								value="#{opcionesMB.menuMiAreaMisDatos}" onLabel="Habilitado"
+								offLabel="Deshabilitado" />
+
+							<h:outputLabel for="menuMiAreaMisPropiedades"
+								value="Menú > Mi Área > Mis Propiedades : " />
+							<p:selectBooleanButton id="menuMiAreaMisPropiedades"
+								value="#{opcionesMB.menuMiAreaMisPropiedades}"
+								onLabel="Habilitado" offLabel="Deshabilitado" />
+
+							<h:outputLabel for="menuMiAreaRegistrarInmueble"
+								value="Menú > Mi Área > Registrar Inmueble : " />
+							<p:selectBooleanButton id="menuMiAreaRegistrarInmueble"
+								value="#{opcionesMB.menuMiAreaRegistrarInmueble}"
+								onLabel="Habilitado" offLabel="Deshabilitado" />
+
+						</h:panelGrid>
+
+
+						<p:commandButton value="Ok" action="#{opcionesMB.updOpciones}"
+							ajax="false" update="growl" />
+
+					</p:panel>
+				</p:tab>
+
+
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

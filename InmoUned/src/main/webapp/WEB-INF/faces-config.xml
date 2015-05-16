@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+  	
+  	<!-- JSF and Spring are integrated -->
+  	<application>
+  	 <locale-config>
+            <default-locale>es</default-locale>
+<!--            <supported-locale>en</supported-locale> -->
+            <supported-locale>es</supported-locale>
+        </locale-config>
+        
+      	<el-resolver>
+    		org.springframework.web.jsf.el.SpringBeanFacesELResolver
+    	</el-resolver>
+    	
+    	<!-- variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver-->  
+  	</application>
+	
+	<!-- configuration of navigation rules -->	
+	<navigation-rule>
+	    <from-view-id>/pages/index.xhtml</from-view-id> 
+	    <navigation-case>
+	        <from-outcome>success</from-outcome>
+            <to-view-id>/pages/success.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>error</from-outcome>
+            <to-view-id>/pages/error.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>resultados</from-outcome>
+            <to-view-id>/pages/resultados.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>detalles</from-outcome>
+            <to-view-id>/pages/detalles.xhtml</to-view-id>
+        </navigation-case>
+                 <navigation-case>
+	        <from-outcome>login</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>registroInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	       <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+	    <from-view-id>/pages/login.xhtml</from-view-id> 
+	    <navigation-case>
+	        <from-outcome>success</from-outcome>
+            <to-view-id>/pages/success.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>error</from-outcome>
+            <to-view-id>/pages/error.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>resultados</from-outcome>
+            <to-view-id>/pages/resultados.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>detalles</from-outcome>
+            <to-view-id>/pages/detalles.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>logged</from-outcome>
+            <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>notlogged</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>editarInmueble</from-outcome>
+            <to-view-id>/pages/editarInmueble.xhtml</to-view-id>
+        </navigation-case>
+                 <navigation-case>
+	        <from-outcome>login</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>registroInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+      </navigation-case>
+      <navigation-case>
+          <from-outcome>registrarInmueble</from-outcome>
+          <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+      </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+      
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+	    <from-view-id>/pages/buscador.xhtml</from-view-id> 
+         <navigation-case>
+	        <from-outcome>detalles</from-outcome>
+            <to-view-id>/pages/detalles.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>logged</from-outcome>
+            <to-view-id>/index.jsp</to-view-id>
+        </navigation-case>
+                 <navigation-case>
+	        <from-outcome>login</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>registroInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+         </navigation-case>
+         <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+          
+    </navigation-rule>
+    
+    
+     <navigation-rule>
+	    <from-view-id>/pages/usuarios.xhtml</from-view-id> 
+         <navigation-case>
+	        <from-outcome>edit-usuario</from-outcome>
+            <to-view-id>/pages/editarUsuario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>login</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>registroInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>inmueblesPorUsuarios</from-outcome>
+            <to-view-id>/pages/inmueblesPorUsuario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+     <navigation-rule>
+	    <from-view-id>/pages/editarUsuario.xhtml</from-view-id> 
+         <navigation-case>
+	        <from-outcome>usuarios</from-outcome>
+            <to-view-id>/pages/usuarios.xhtml</to-view-id>
+        </navigation-case>
+                 <navigation-case>
+	        <from-outcome>login</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>registroInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+       </navigation-case>
+         <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    <navigation-rule>
+	    <from-view-id>/pages/editarInmueble.xhtml</from-view-id> 
+         <navigation-case>
+	        <from-outcome>misinmuebles</from-outcome>
+            <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>inmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>login</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>registroInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+     </navigation-case>
+         <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/inmueblesPorUsuario.xhtml</from-view-id> 
+	      <navigation-case>
+	        <from-outcome>edit-usuario</from-outcome>
+            <to-view-id>/pages/editarUsuario.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>interesadosPorInmueble</from-outcome>
+            <to-view-id>/pages/interesados.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+  	      <from-view-id>/pages/misinmuebles.xhtml</from-view-id> 
+	      <navigation-case>
+	        <from-outcome>interesadosPorInmueble</from-outcome>
+            <to-view-id>/pages/interesados.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>misinmuebles</from-outcome>
+            <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+         </navigation-case>
+         <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/inmuebles.xhtml</from-view-id> 
+	      <navigation-case>
+	        <from-outcome>interesadosPorInmueble</from-outcome>
+            <to-view-id>/pages/interesados.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>inmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+          
+    </navigation-rule>
+    
+    
+    
+      <navigation-rule>
+  	      <from-view-id>/pages/editMisDatos.xhtml</from-view-id> 
+	      <navigation-case>
+	        <from-outcome>misdatos</from-outcome>
+            <to-view-id>/pages/misdatos.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>error</from-outcome>
+            <to-view-id>/pages/misdatos.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/misdatos.xhtml</from-view-id> 
+	      <navigation-case>
+	        <from-outcome>editarmisdatos</from-outcome>
+            <to-view-id>/pages/editarMisDatos.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	         <from-outcome>registrarInmueble</from-outcome>
+             <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/editarOpciones.xhtml</from-view-id>
+  	      <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+                    <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/detalles.xhtml</from-view-id>
+  	      <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+         
+    </navigation-rule>
+    
+     <navigation-rule>
+  	      <from-view-id>/pages/editarMisDatos.xhtml</from-view-id>
+  	      <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/registroUsuario.xhtml</from-view-id>
+  	      <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+    </navigation-rule>
+    
+    
+     <navigation-rule>
+  	      <from-view-id>/pages/registroInmueble.xhtml</from-view-id>
+  	      <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+  	      <from-view-id>/pages/interesados.xhtml</from-view-id>
+  	      <navigation-case>
+	        <from-outcome>todoslosinmuebles</from-outcome>
+            <to-view-id>/pages/inmuebles.xhtml</to-view-id>
+          </navigation-case>
+          <navigation-case>
+	        <from-outcome>registrarInmueble</from-outcome>
+            <to-view-id>/pages/registroInmueble.xhtml</to-view-id>
+          </navigation-case>
+         <navigation-case>
+           <from-outcome>misPropiedades</from-outcome>
+          <to-view-id>/pages/misinmuebles.xhtml</to-view-id>
+         </navigation-case>
+       <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+       </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-case>
+           <from-outcome>misDatos</from-outcome>
+          <to-view-id>/pages/misdatos.xhtml</to-view-id>
+    </navigation-case>
+    
+    
+</faces-config>

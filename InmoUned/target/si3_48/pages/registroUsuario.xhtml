@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+    <ui:define name="content">
+        <h1 class="title ui-widget-header ui-corner-all">Registro de
+            nuevos usuarios.</h1>
+        <div class="entry">
+            <p>Complete los datos del usuario.</p>
+            <h:form>
+
+                <p:growl id="growl" sticky="true" showDetail="true" />
+
+                <p:wizard widgetVar="wiz" flowListener="#{usuarioMB.onFlowProcess}">
+
+                    <p:tab id="personal" title="Personal">
+
+                        <p:panel header="Detalles personales">
+
+                            <h:messages errorClass="error" />
+
+                            <h:panelGrid columns="4" columnClasses="label, value"
+                                         styleClass="grid">
+
+                                <h:outputLabel for="nombre" value="Nombre *: " />
+                                <p:inputText id="nombre" label="Nombre"
+                                             value="#{usuarioMB.usuarioHelper.nombre}" required="true">
+                                    <f:validateLength minimum="3" />
+                                    <p:ajax event="blur" update="nameMsg" />
+                                </p:inputText>
+                                <p:message id="nameMsg" for="nombre" display="icon" />
+                                <h:outputText />
+
+                                <h:outputLabel for="apellido1" value="Apellidos: " />
+                                <p:inputText id="apellido1" label="Primer apellido"
+                                             value="#{usuarioMB.usuarioHelper.apellido1}" required="true">
+                                    <f:validateLength minimum="3" />
+                                    <p:ajax event="blur" update="surnameMsg" />
+                                </p:inputText>
+
+                                <p:inputText id="apellido2" label="Segundo apellido"
+                                             value="#{usuarioMB.usuarioHelper.apellido2}">
+                                    <f:validateLength minimum="3" />
+                                    <p:ajax event="blur" update="surnameMsg" />
+                                </p:inputText>
+                                <p:message id="surnameMsg" for="apellido1" display="icon" />
+
+                                <h:outputLabel for="movil" value="Movil : " />
+                                <p:inputMask id="movil" value="#{usuarioMB.usuarioHelper.movil}"
+                                             mask="(999) 999999" label="Movil" />
+                                <p:message id="movilMsg" for="movil" display="icon" />
+                                <h:outputText />
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+                    <p:tab id="datusu" title="Datos Usuario">
+                        <p:panel header="DatosUsuario">
+
+                            <h:panelGrid columns="3" columnClasses="label, value"
+                                         styleClass="grid">
+
+                                <h:outputLabel for="email" value="Email *: " />
+                                <p:inputText id="email" value="#{usuarioMB.usuarioHelper.email}"
+                                             required="true" label="email">
+                                    <f:validateLength minimum="5" />
+                                    <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    <p:ajax event="blur" update="emailMsg" />
+                                </p:inputText>
+                                <p:message id="emailMsg" for="email" display="icon" />
+
+
+                                <h:outputLabel for="pwd1" value="Password 1: *" />
+                                <p:password id="pwd1"
+                                            value="#{usuarioMB.usuarioHelper.password}" feedback="true"
+                                            promptLabel="Escribe tu clave" weakLabel="insegura"
+                                            goodLabel="Buena" strongLabel="Fuerte" match="pwd2"
+                                            label="Password 1" required="true" />
+                                <h:outputText />
+
+                                <h:outputLabel for="pwd2" value="Password 2: *" />
+                                <p:password id="pwd2"
+                                            value="#{usuarioMB.usuarioHelper.password}" label="Password 2"
+                                            required="true" feedback="true" promptLabel="Escribe tu clave"
+                                            weakLabel="insegura" goodLabel="Buena" strongLabel="Fuerte" />
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+                                <h:outputLabel for="tipusu" rendered="#{sessionMB.admin}"
+                                               value="Tipo de usuario: " />
+                                <p:selectOneMenu id="tipusu" rendered="#{sessionMB.admin}"
+                                                 required="true" label="Precio max."
+                                                 value="#{usuarioMB.usuarioHelper.tipoUsuario}">
+                                    <f:selectItem itemLabel="Cliente" itemValue="CLIENTE" />
+                                    <f:selectItem itemLabel="Administrador" itemValue="ADMIN" />
+                                </p:selectOneMenu>
+
+
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="confirm" title="Confirmación">
+                        <p:panel header="Confirmation">
+
+                            <h:panelGrid id="confirmation" columns="6">
+                                <h:outputText value="Nombre: " />
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{usuarioMB.usuarioHelper.nombre}" />
+
+                                <h:outputText value="Apellidos: " />
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{usuarioMB.usuarioHelper.apellido1}" />
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{usuarioMB.usuarioHelper.apellido2}" />
+                                <h:outputText />
+
+                                <h:outputText value="Email: " />
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{usuarioMB.usuarioHelper.email}" />
+
+                                <h:outputText value="Movil: " />
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{usuarioMB.usuarioHelper.movil}" />
+
+
+                            </h:panelGrid>
+
+                            <p:commandButton id="addUsuario" value="Registrar" update="growl"
+                                             action="#{usuarioMB.addUsuario}" ajax="false" />
+
+
+                        </p:panel>
+                    </p:tab>
+
+                </p:wizard>
+
+            </h:form>
+        </div>
+
+    </ui:define>
+</ui:composition>

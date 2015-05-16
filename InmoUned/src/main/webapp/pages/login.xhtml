@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Buscador de
+			inmuebles</h1>
+		<div class="entry">
+			<p>Completa las caracteristicas de la propiedad que desea buscar</p>
+
+			<h:form>
+
+				<p:growl id="growl" sticky="true" showDetail="true" />
+
+				<p:tab id="personal" title="Características">
+
+					<p:panel header="Acceso">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="4" columnClasses="label, value"
+							styleClass="grid">
+
+							<h:outputText value="Email *:" />
+							<h:inputText id="puerta" required="true" label="email"
+								value="#{sessionMB.usuarioHelper.email}" />
+							<h:outputText />
+							<h:outputText />
+
+							<h:outputText value="Contraseña *:" />
+							<p:password id="pwd1" value="#{sessionMB.usuarioHelper.password}"
+								feedback="true" promptLabel="Escribe tu clave" label="Password"
+								required="true" />
+							<h:outputText />
+							<h:outputText />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+
+
+
+
+
+				<p:commandButton value="Acceder" action="#{sessionMB.login}"
+					ajax="false" />
+
+
+
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

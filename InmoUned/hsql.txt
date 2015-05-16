@@ -1,0 +1,33 @@
+
+
+
+java -cp /path/to/hsqldb.jar org.hsqldb.util.DatabaseManagerSwing --urlid mem
+
+
+
+C:\enviroment\apache\apache-tomcat-6.0.32\webapps\InmoUned\WEB-INF\lib>dir 
+
+
+
+java -cp hsqldb-1.8.0.10.jar org.hsqldb.util.DatabaseManagerSwing --urlid mem
+
+"%javapath%" -cp "%jarpath%" org.hsqldb.Server -database.0 file:mydb
+
+
+java -cp hsqldb-1.8.0.10.jar org.hsqldb.Server -database.0 file:test
+
+
+java -classpath  hsqldb-1.8.0.10.jar org.hsqldb.Server -database test
+
+
+java -cp hsqldb-1.8.0.10.jar org.hsqldb.Server -database.0 file:test
+
+
+C:\enviroment\apache\apache-tomcat-6.0.32\webapps\InmoUned\WEB-INF\lib>java -cp hsqldb-1.8.0.10.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 test
+
+
+java -cp hsqldb-1.8.0.10.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 test
+    
+	
+java -cp hsqldb-1.8.0.10.jar org.hsqldb.WebServer -database.0 file:mydb -dbname.0 test
+	

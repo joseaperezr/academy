@@ -1,0 +1,165 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+	<ui:define name="content">
+		<h1 class="title ui-widget-header ui-corner-all">Registro de
+			inmueble</h1>
+		<div class="entry">
+			<p>Completa las caracteristicas de la propiedad</p>
+			<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" />
+				<p:wizard widgetVar="wiz" flowListener="#{inmuebleMB.onFlowProcess}" rendered="#{sessionMB.logged}">
+					<p:tab id="personal" title="Características">
+						<p:panel header="Detalles">
+							<h:messages errorClass="error" />
+							<h:panelGrid columns="4" columnClasses="label, value"
+								styleClass="grid">
+								<p:inputText id="idinm" disabled="true" type="hidden"
+									value="#{inmuebleMB.inmuebleHelper.id}">
+								</p:inputText>
+								<h:outputText />
+								<h:outputText />
+								<h:outputText />
+								<h:outputLabel for="tmn" value="Tamaño *: " />
+								<p:inputText id="tmn"
+									value="#{inmuebleMB.inmuebleHelper.tamaño}" required="true">
+									<f:validateLength minimum="2" />
+									<p:ajax event="blur" update="tmnMsg" />
+								</p:inputText>
+								<p:message id="tmnMsg" for="tmn" display="icon" />
+								<h:outputText />
+								<h:outputLabel for="precio" value="Precio *: " />
+								<p:inputText id="precio"
+									value="#{inmuebleMB.inmuebleHelper.precio}" required="true">
+									<p:ajax event="blur" update="precioMsg" />
+								</p:inputText>
+								<p:message id="precioMsg" for="habitaciones" display="icon" />
+								<h:outputText />
+								<h:outputLabel for="habitaciones" value="Habitaciones *: " />
+								<p:inputText id="habitaciones"
+									value="#{inmuebleMB.inmuebleHelper.habitaciones}"
+									required="true">
+									<f:validateLength minimum="1" />
+									<p:ajax event="blur" update="hbtMsg" />
+								</p:inputText>
+								<p:message id="hbtMsg" for="habitaciones" display="icon" />
+								<h:outputText />
+
+								<h:outputLabel for="baños" value="Baños *: " />
+								<p:inputText id="baños"
+									value="#{inmuebleMB.inmuebleHelper.baños}" required="true">
+									<f:validateLength minimum="1" />
+									<p:ajax event="blur" update="bnMsg" />
+								</p:inputText>
+								<p:message id="bnMsg" for="baños" display="icon" />
+								<h:outputText />
+								<h:outputLabel for="jardin" value="Jardín : " />
+								<p:selectBooleanButton
+									value="#{inmuebleMB.inmuebleHelper.jardin}" onLabel="Si"
+									offLabel="No" />
+								<h:outputLabel for="parking" value="Parking : " />
+								<p:selectBooleanButton
+									value="#{inmuebleMB.inmuebleHelper.parking}" onLabel="Si"
+									offLabel="No" />
+								<h:outputLabel for="observaciones" value="Observaciones : " />
+								<p:inputTextarea rows="5" cols="30" counter="countero"
+									maxlength="250" counterTemplate="{0} caracteres restantes."
+									autoResize="false"
+									value="#{inmuebleMB.inmuebleHelper.observaciones}"
+									id="observaciones" />
+								<h:outputText id="countero" />
+								<p:message id="obsMsg" for="observaciones" display="icon" />
+							</h:panelGrid>
+						</p:panel>
+					</p:tab>
+					<p:tab id="ubicacion" title="Ubicación">
+						<p:panel header="Ubicación">
+							<h:panelGrid id="ubi" columns="4">
+								<h:outputText value="Provincia *:" />
+								<p:selectOneMenu required="true"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.provincia}">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="A Coruña" itemValue="A Coruña" />
+									<f:selectItem itemLabel="Barcelona" itemValue="Barcelona" />
+									<f:selectItem itemLabel="Las Palmas" itemValue="Las Palmas" />
+									<f:selectItem itemLabel="Madrid" itemValue="Madrid" />
+									<f:selectItem itemLabel="Tenerife" itemValue="Tenerife" />
+								</p:selectOneMenu>
+								<h:outputText value="Tipo vía *:" />
+								<p:selectOneMenu required="true"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.tipoVia}">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="CALLE" itemValue="CALLE" />
+									<f:selectItem itemLabel="AVENIDA" itemValue="AVENIDA" />
+								</p:selectOneMenu>
+								<h:outputText value="Nombre vía *:" />
+								<h:inputText id="nombrevia" required="true"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.nombreVia}" />
+								<h:outputText value="Número: " />
+								<h:inputText id="nro"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.nro}" />
+								<h:outputText value="Puerta: " />
+								<h:inputText id="puerta"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.puerta}" />
+								<h:outputText value="Piso: " />
+								<h:inputText id="piso"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.piso}" />
+								<h:outputText value="Detalles: " />
+								<p:inputTextarea rows="5" cols="30" counter="counter"
+									maxlength="250" counterTemplate="{0} caracteres restantes."
+									autoResize="false"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.detalle}" />
+								<h:outputText id="counter" />
+								<h:outputText />
+								<h:outputText />
+							</h:panelGrid>
+						</p:panel>
+					</p:tab>
+					<p:tab id="confirm" title="Confirmación">
+						<p:panel header="Confirmación">
+							<h:panelGrid id="confirmation" columns="6">
+								<h:outputText value="Precio: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.precio}" />
+								<h:outputText value="Tamaño: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.tamaño}" />
+								<h:outputText value="Habitaciones: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.habitaciones}" />
+								<h:outputText value="Baños: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.baños}" />
+								<h:outputLabel for="jardion" value="Parking : " />
+								<p:selectBooleanCheckbox
+									value="#{inmuebleMB.inmuebleHelper.parking}" disabled="true" />
+								<h:outputLabel for="jardion" value="Jardín : " />
+								<p:selectBooleanCheckbox
+									value="#{inmuebleMB.inmuebleHelper.jardin}" disabled="true" />
+								<h:outputLabel for="parking" value="Parking : " />
+								<p:selectBooleanCheckbox
+									value="#{inmuebleMB.inmuebleHelper.parking}" disabled="true" />
+								<h:outputText value="Provincia: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.provincia}" />
+								<h:outputText value="Tipo vía: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.tipoVia}" />
+								<h:outputText value="Nombre vía: " />
+								<h:outputText styleClass="outputLabel"
+									value="#{inmuebleMB.inmuebleHelper.ubicacion.nombreVia}" />
+								<h:outputText />
+								<h:outputText />
+							</h:panelGrid>
+							<p:commandButton value="Ok" rendered="#{sessionMB.logged}"
+								actionListener="#{inmuebleMB.updInmueble}" update="growl"
+								process="@this" />
+						</p:panel>
+					</p:tab>
+				</p:wizard>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

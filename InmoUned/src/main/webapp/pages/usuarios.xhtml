@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Buscador de
+			inmuebles</h1>
+		<div class="entry">
+			<p>Usuarios registrados</p>
+
+			<h:form id="form">
+
+				<p:growl id="growl" showDetail="true" />
+
+
+				<p:dataTable id="results" var="usu" rendered="#{sessionMB.admin}"
+					value="#{usuarioMB.usuarioDataModel}" paginator="true" rows="10"
+					selection="#{usuarioMB.usuarioSelected}" selectionMode="single"
+					tableStyle="width:auto">
+
+					<!-- 					<p:ajax event="rowSelect" listener="#{usuarioMB.onRowSelect}"
+						update=":form:display :form:growl" oncomplete="carDialog.show()" />  -->
+					<p:ajax event="rowUnselect" listener="#{usuarioMB.onRowUnselect}"
+						update=":form:growl" />
+					<p:ajax event="rowDblselect" listener="#{usuarioMB.onRowDblselect}" />
+
+
+
+					<p:column headerText="Id" style="width:100px">
+						<h:outputText value="#{usu.id}" />
+					</p:column>
+
+					<p:column headerText="Precio" style="width:100px">
+						<h:outputText value="#{usu.email}" />
+					</p:column>
+
+					<p:column headerText="Nombre" style="width:100px">
+						<h:outputText value="#{usu.nombre}, #{usu.apellido1} " />
+					</p:column>
+
+
+					<p:column headerText="Tipo" style="width:100px">
+						<h:outputText value="#{usu.tipoUsuario}" />
+					</p:column>
+
+
+
+				</p:dataTable>
+
+				<p:dialog id="dialog" header="Car Detail" widgetVar="carDialog"
+					resizable="false" showEffect="explode" hideEffect="explode">
+
+					<h:panelGrid id="display" columns="2" cellpadding="4">
+
+						<h:outputText value="#{usuarioMB.usuarioSelected.id}" />
+						<h:outputText value="#{usuarioMB.usuarioSelected.email}" />
+
+						<p:commandButton value="Editar" action="#{usuarioMB.edit}"
+							ajax="false" />
+					</h:panelGrid>
+				</p:dialog>
+
+
+				<p:commandButton value="Propiedades asociadas"
+					rendered="#{sessionMB.admin}"
+					action="#{inmuebleMB.inmueblesPorUsuarios}" ajax="false" />
+
+				<p:commandButton value="Editar" action="#{usuarioMB.edit}"
+					rendered="#{sessionMB.admin}" ajax="false" />
+
+				<p:commandButton value="Eliminar" rendered="#{sessionMB.admin}"
+					action="#{usuarioMB.deleteUsuario}" ajax="false" />
+
+
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,160 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				http://www.springframework.org/schema/tx 
+		        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		        http://www.springframework.org/schema/context 
+		        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="es.uned" />
+
+	<!-- Beans Declaration -->
+	
+	<bean id="Persona" class="es.uned.model.Persona" />
+	<bean id="Usuario" class="es.uned.model.Usuario" />
+	<bean id="Inmueble" class="es.uned.model.Inmueble" />
+	<bean id="Foto" class="es.uned.model.Foto" />
+	<bean id="Ubicacion" class="es.uned.model.Ubicacion" />
+	<bean id="Interesado" class="es.uned.model.Interesado" />
+	<bean id="Opciones" class="es.uned.model.Opcion" />
+
+	
+
+	<!-- Usuario Service Declaration -->
+	<bean id="UsuarioService" class="es.uned.service.UsuarioService">
+		<property name="usuarioDAO" ref="UsuarioDAO" />
+	</bean>
+
+	<!-- Usuario DAO Declaration -->
+	<bean id="UsuarioDAO" class="es.uned.dao.UsuarioDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+
+	<!-- Inmueble Service Declaration -->
+	<bean id="InmuebleService" class="es.uned.service.InmuebleService">
+		<property name="inmuebleDAO" ref="InmuebleDAO" />
+	</bean>
+
+	<!-- Inmueble DAO Declaration -->
+	<bean id="InmuebleDAO" class="es.uned.dao.InmuebleDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	
+	<!-- Foto Service Declaration -->
+	<bean id="FotoService" class="es.uned.service.FotoService">
+		<property name="fotoDAO" ref="FotoDAO" />
+	</bean>
+
+	<!-- Foto DAO Declaration -->
+	<bean id="FotoDAO" class="es.uned.dao.FotoDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	
+	<!-- Ubicacion Service Declaration -->
+	<bean id="UbicacionService" class="es.uned.service.UbicacionService">
+		<property name="ubicacionDAO" ref="UbicacionDAO" />
+	</bean>
+
+	<!-- Ubicacion DAO Declaration -->
+	<bean id="UbicacionDAO" class="es.uned.dao.UbicacionDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<!-- Interesado Service Declaration -->
+	<bean id="InteresadoService" class="es.uned.service.InteresadoService">
+		<property name="interesadoDAO" ref="InteresadoDAO" />
+	</bean>
+
+	<!-- Interesado DAO Declaration -->
+	<bean id="InteresadoDAO" class="es.uned.dao.InteresadoDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<!-- Opcion Service Declaration -->
+	<bean id="OpcionService" class="es.uned.service.OpcionService">
+		<property name="opcionDAO" ref="OpcionDAO" />
+	</bean>
+
+	<!-- Opcion DAO Declaration -->
+	<bean id="OpcionDAO" class="es.uned.dao.OpcionDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+    <!-- Mail Service -->
+	<bean id="MailService" class="es.uned.service.MailService">
+		<property name="mailSender" ref="MailSender" />
+	</bean>
+
+
+	<!-- Data Source Declaration -->
+	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.hsqldb.jdbcDriver" />
+		<property name="jdbcUrl" value="jdbc:hsqldb:mem:test" /> 
+		<!-- <property name="jdbcUrl" value="jdbc:hsqldb:hsql://localhost:9001/test" />  -->
+		<property name="user" value="sa" />
+		<property name="password" value="" />
+
+	</bean>
+
+	<!-- Session Factory Declaration -->
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>es.uned.model.Persona</value>
+				<value>es.uned.model.Usuario</value>
+				<value>es.uned.model.Inmueble</value>
+				<value>es.uned.model.Foto</value>
+				<value>es.uned.model.Ubicacion</value>
+				<value>es.uned.model.Interesado</value>
+				<value>es.uned.model.Opcion</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+                                <prop key="hibernate.format_sql">true</prop>
+ 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.jdbc.batch_size">30</prop>
+				<prop key="hibernate.max_fetch_depth">5</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+
+	<bean id="MailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<!-- <property name="protocol" value="smtps"/> -->
+		<property name="username" value="contacto.si348@gmail.com" />
+		<property name="password" value="discovery27" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<!-- <prop key="mail.smtp.ssl.enable">true</prop> -->
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+
+
+</beans>

@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Inmuebles
+			asociados a un usuario selecionado</h1>
+		<div class="entry">
+			<p></p>
+			<h:form id="form">
+				<p:growl id="growl" sticky="true" showDetail="true" />
+
+				<p:tab id="personal" title="Personal">
+
+					<p:panel  rendered="#{sessionMB.logged}" header="Usuarrio seleccionado">
+
+
+						<h:panelGrid columns="4" columnClasses="label, value"
+							styleClass="grid">
+
+							
+							<h:outputLabel value="Identificador: " />
+							<h:outputText value="#{sessionMB.usuarioLogged.id}" />
+							<h:outputText />
+							<h:outputText />
+
+							<h:outputLabel value="Nombre y apellidos: " />
+							<h:outputText value="#{sessionMB.usuarioLogged.nombre}, " />
+							<h:outputText
+								value="#{sessionMB.usuarioLogged.apellido1} #{sessionMB.usuarioLogged.apellido2}" />
+							<h:outputText />
+
+							<h:outputLabel value="Email: " />
+							<h:outputText value="#{sessionMB.usuarioLogged.email}" />
+
+							<h:outputLabel value="Movil: " />
+							<h:outputText value="#{sessionMB.usuarioLogged.movil}" />
+							
+							
+							<h:outputLabel value="Tipo: " />
+							<h:outputText value="#{sessionMB.usuarioLogged.tipoUsuario}" />
+							<h:outputText />
+							<h:outputText />
+
+							<p:commandButton  rendered="#{sessionMB.logged}" value="Editar" action="#{sessionMB.edit}"
+								ajax="false" />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:spacer height="25" />
+
+
+
+
+
+
+
+
+
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

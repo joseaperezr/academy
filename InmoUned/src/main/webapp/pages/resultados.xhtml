@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="title ui-widget-header ui-corner-all">Buscador de
+			inmuebles</h1>
+		<div class="entry">
+			<p>Inmuebles encontrados:</p>
+
+			<h:form id="form">
+
+				
+				<p:growl id="growl" showDetail="true"/>  
+
+  
+				<p:dataTable id="results" var="inm" value="#{buscadorMB.inmueblesDataModel}"
+				     paginator="true" rows="10"  selection="#{buscadorMB.inmuebleSelected}" 
+				     selectionMode="single"	tableStyle="width:auto">
+					
+					 <p:ajax event="rowSelect" listener="#{buscadorMB.onRowSelect}" update=":form:display :form:growl" oncomplete="" />
+                     <p:ajax event="rowUnselect" listener="#{buscadorMB.onRowUnselect}" update=":form:growl"/>
+                     <!-- p:ajax event="rowDblselect" listener="#{buscadorMB.onRowDblselect}" /-->
+                    
+
+                    <p:column headerText="Id" style="width:100px">
+						<h:outputText value="#{inm.id}" />
+					</p:column>
+					
+					<p:column headerText="Precio" style="width:100px">
+						<h:outputText value="#{inm.precio} €." />
+					</p:column>
+
+					<p:column headerText="Tamaño" style="width:100px">
+						<h:outputText value="#{inm.tamaño}" />
+					</p:column>
+
+					<p:column headerText="Habitaciones" style="width:100px">
+						<h:outputText value="#{inm.habitaciones}" />
+					</p:column>
+
+					<p:column headerText="Baños" style="width:100px">
+						<h:outputText value="#{inm.baños}" />
+					</p:column>
+
+					<p:column headerText="Parking" style="width:100px">
+						<h:outputText rendered="#{inm.parking}" value="Sí" />
+						<h:outputText rendered="#{!(inm.parking)}" value="No" />
+					</p:column>
+
+					<p:column headerText="Jardín" style="width:100px">
+						<h:outputText rendered="#{inm.jardin}" value="Sí" />
+						<h:outputText rendered="#{!(inm.jardin)}" value="No" />
+					</p:column>
+
+
+
+				</p:dataTable>
+				
+				
+				 <p:dialog id="dialog" header="Car Detail" widgetVar="carDialog" resizable="false"
+                          showEffect="explode" hideEffect="explode">
+
+                    <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                        <f:facet name="header">
+                            <h:outputText value="Model:" />
+                        </f:facet>
+
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{buscadorMB.inmuebleSelected.id}" style="font-weight:bold"/>
+                        
+                       
+                        
+                    </h:panelGrid>
+                </p:dialog>
+				
+				<p:commandButton value="Ver detalles" action="#{buscadorMB.detalles}"
+					             ajax="false" />
+				
+				
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,198 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>InmoUned</title>
+		</f:facet>
+
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+		<ui:insert name="head"></ui:insert>
+
+		<script type="text/javascript">
+			$(function() {
+				$('.sidebar a').hover(function() {
+					$(this).toggleClass('ui-state-hover');
+				})
+			});
+			
+			function delayer(){
+			    window.location = "./buscador.jsf"
+			};
+		</script>
+	</h:head>
+
+	<h:body   onLoad="setTimeout('delayer()', 5)">
+
+		<div class="ui-widget ui-widget-header">
+			<div id="logo">
+				<img src="#{request.contextPath}/images/logo.png" alt="Logo" />
+			</div>
+		</div>
+
+		<div id="menu" class="ui-widget ui-widget-content">
+
+			<h:form id="frmthemes">
+
+				<p:themeSwitcher value="#{themeSwitcherBean.theme}"
+					style="width:155px;float:right;margin:5px;" effect="fade">
+					<f:selectItem itemLabel="Choose Theme" itemValue="" />
+					<f:selectItems value="#{themeSwitcherBean.themes}" />
+					<p:ajax listener="#{themeSwitcherBean.saveTheme}" />
+				</p:themeSwitcher>
+
+			</h:form>
+
+		</div>
+
+		<div id="page" class="ui-widget">
+
+            <h:form id="frmmenu">  
+			<div id="sidebar1"
+				class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow sidebar">
+				<p:spacer height="50" />
+
+
+				<p:panel id="panelOpt" header="Opciones" style="border:none">
+
+					<h:panelGrid columns="3" styleClass="ui-widget submenu-content">
+						<h:outputLink value="#{request.contextPath}/pages/buscador.jsf"
+							id="pbuscador">
+							<h:outputText value="Buscador" />
+						</h:outputLink>
+						
+						<h:outputLink id="ruser"
+						         value="#{request.contextPath}/pages/registroUsuario.jsf">
+							<h:outputText value="Registrar usuario" />
+						</h:outputLink>
+						<h:outputLink value="#{request.contextPath}/pages/login.jsf"
+							rendered="#{!(sessionMB.logged)}" id="login">
+							<h:outputText value="Acceder" />
+						</h:outputLink>
+						<p:commandLink rendered="#{(sessionMB.logged)}"
+							actionListener="#{sessionMB.logout}" id="logout"
+							update="panelOpt,panelcliente">
+							<h:outputText value="Salir" />
+						</p:commandLink>
+
+					</h:panelGrid>
+				</p:panel>
+
+				<p:panel rendered="#{(sessionMB.logged)}" id="panelcliente"
+					header="Mi área" style="border:none">
+
+					<h:panelGrid columns="3" styleClass="ui-widget submenu-content">
+						<h:outputLink value="#{request.contextPath}/pages/inmuebles.jsf"
+							rendered="#{sessionMB.admin}" id="lpropclie">
+							<h:outputText value="Mis propiedades" />
+						</h:outputLink>
+						<h:outputLink value="#{request.contextPath}/pages/registroInmueble.jsf"
+						     id="lregprop">
+							<h:outputText value="Registrar inmmueble" />
+						</h:outputLink>
+					</h:panelGrid>
+				</p:panel>
+
+
+				<p:panel rendered="#{sessionMB.admin}" id="panelAdmin"
+					header="Administración" style="border:none">
+
+					<h:panelGrid columns="3" styleClass="ui-widget submenu-content">
+						<h:outputLink value="#{request.contextPath}/pages/usuarios.jsf"
+							rendered="#{sessionMB.admin}" id="olusers">
+							<h:outputText value="Lista de usuarios" />
+						</h:outputLink>
+						<h:outputLink value="#{request.contextPath}/pages/inmuebles.jsf"
+							rendered="#{sessionMB.admin}" id="olpropadmin">
+							<h:outputText value="Lista de propiedades" />
+						</h:outputLink>
+
+					</h:panelGrid>
+				</p:panel>
+
+
+
+
+				<h3 class="ui-widget ui-widget-header ui-corner-all submenu-title">Misc</h3>
+				<div class="submenu-content" style="margin-bottom: 20px">
+					<table>
+						<tr>
+							<td style="width: 33%">
+								<ul>
+									<li><a href="#{request.contextPath}/ui/blockUI.jsf">BlockUI</a></li>
+
+								</ul>
+							</td>
+							<td style="width: 33%">
+								<ul>
+									<li><a
+										href="#{request.contextPath}/ui/idlemonitorHome.jsf">IdleMonitor</a></li>
+								</ul>
+							</td>
+							<td style="width: 33%">
+								<ul>
+									<li><a href="#{request.contextPath}/ui/resizableHome.jsf">Resizable</a></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+            </h:form>
+
+			<div id="content">
+				<div class="post">
+					
+				</div>
+			</div>
+
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+
+		<div id="footer" class="ui-widget ui-widget-header ui-corner-all">
+			<p class="copyright">Running #{build.primefacesVersion} on
+				#{build.jsfVersion}</p>
+		</div>
+
+		<ui:insert name="status">
+			<p:ajaxStatus
+				style="width:64px;height:64px;display:block;position:absolute;right:0;top:150px;">
+				<f:facet name="start">
+					<p:graphicImage value="/images/cube.gif" />
+				</f:facet>
+
+				<f:facet name="complete">
+					<p:graphicImage value="/images/cube-static.gif" />
+				</f:facet>
+
+				<f:facet name="default">
+					<p:graphicImage value="/images/cube-static.gif" />
+				</f:facet>
+			</p:ajaxStatus>
+		</ui:insert>
+	</h:body>
+
+	<ui:insert name="highlight">
+		<script language="javascript"
+			src="#{request.contextPath}/syntaxhighlighter/scripts/sh.js"></script>
+		<script language="javascript">
+			dp.SyntaxHighlighter.ClipboardSwf = '#{request.contextPath}/syntaxhighlighter/scripts/clipboard.swf';
+			dp.SyntaxHighlighter.HighlightAll('code');
+		</script>
+	</ui:insert>
+
+</f:view>
+</html>
